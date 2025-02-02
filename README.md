@@ -1,2 +1,2 @@
-# travelista_maktabkhooneh
- This is a simple website designed with Django
+# my_site
+ my first site learning

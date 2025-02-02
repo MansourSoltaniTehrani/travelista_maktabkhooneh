@@ -1,0 +1,30 @@
+{% load static %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for test</title>
+</head>
+<body>
+    <h1>Dear this document is created for testing</h1>
+    <h1>and the author is {{name}} and the last name is {{ family }}</h1>
+    <p>{% test 'mansour' %}</p>
+    <div>
+        {% query as posts %}
+        {% for post in posts %}
+        <p>{{post}}</p>
+        {% endfor %}
+    </div>
+    <div>
+        {% query as posts %}
+        {% for post in posts %}
+        <p>{{post.content|snippet:60}}</p>
+        {% endfor %}
+    </div>
+    <div>
+        {% latestPosts %}
+    </div>
+</body>
+</html>

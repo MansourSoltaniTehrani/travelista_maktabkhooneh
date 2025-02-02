@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="{% url 'website:formTest' %}" method="Post" >
+        {% csrf_token %}
+        <label>name</label>
+        <input type="text" name="name"></br>
+        <label>email</label>
+        <input type="email" name="email"></br>
+        <label>subject</label>
+        <input type="text" name="subject"></br>
+        <label>message</label>
+        <input type="text" name="message"></br>
+        <button type="submit">submit</button>
+    </form> -->
+    <form action="{% url 'website:testView' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
