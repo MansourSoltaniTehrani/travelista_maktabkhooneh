@@ -2,16 +2,16 @@ from django.shortcuts import render
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .models import Post
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-import datetime
+from django.utils import timezone
 
 # Create your views here.
 def home(request, **kwargs):
     if kwargs.get('category_name'):
-        posts = get_list_or_404(Post, status=True, category__name=kwargs.get('category_name'), published_date__lt=datetime.datetime.now())
+        posts = get_list_or_404(Post, status=True, category__name=kwargs.get('category_name'), published_date__lt=timezone.now())
     elif kwargs.get('author'):
-        posts = get_list_or_404(Post, status=True, author__username=kwargs.get('name'), published_date__lt=datetime.datetime.now())
+        posts = get_list_or_404(Post, status=True, author__username=kwargs.get('name'), published_date__lt=timezone.now())
     else:
-        posts = get_list_or_404(Post, status=True, published_date__lt=datetime.datetime.now())
+        posts = get_list_or_404(Post, status=True, published_date__lt=timezone.now())
         
     # posts = Post.objects.filter(status=True)
     # if category_name:
@@ -31,8 +31,8 @@ def home(request, **kwargs):
 
 
 def single(request, id):
-    post = get_object_or_404(Post, pk=id, published_date__lt=datetime.datetime.now(), status=True)
-    # post = Post.objects.exclude(published_date__gt=datetime.datetime.now()).exclude(status=False).get(id=id)
+    post = get_object_or_404(Post, pk=id, published_date__lt=timezone.now(), status=True)
+    # post = Post.objects.exclude(published_date__gt=timezone.now()).exclude(status=False).get(id=id)
     # print(post.counted_views)
     post.counted_views += 1
     post.save()

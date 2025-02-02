@@ -46,12 +46,12 @@ def func():
 @register.inclusion_tag(name='blog_single_nav_area', filename='blog/blog_single_nav_area.html')
 def func(post_id):
     posts = Post.objects.all().exclude(status=False).exclude(published_date__gt=timezone.now()).order_by('created_date')
-    print(post_id)
-    print(posts)
+    # print(post_id)
+    # print(posts)
     first_post_id = posts[0].id
     post_id -= first_post_id-1
     # last_post_id = posts[-1].id
-    print(first_post_id, post_id, end='//////////')
+    # print(first_post_id, post_id, end='//////////')
     if post_id<len(posts) and post_id>1 :
         prev_post = posts[post_id-2]
         next_post = posts[post_id]
@@ -64,7 +64,7 @@ def func(post_id):
     else:
         prev_post, next_post = None, None
 
-    print(prev_post,next_post, end="****************")
+    # print(prev_post,next_post, end="****************")
 
     return {'next_post':next_post, 'prev_post':prev_post}
     
